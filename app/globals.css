@@ -1,26 +1,32 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  /* Colors - Mapping to --color-{name} */
+  --color-cream: #FDF6EC;
+  --color-wheat: #E8C98A;
+  --color-wheat-deep: #C49A3C;
+  --color-crust: #8B4513;
+  --color-crust-light: #C47B3A;
+  --color-dough: #F5E6C8;
+  --color-dough-dark: #EDD49A;
+  --color-bread-green: #7CB87C;
+  --color-bread-red: #E07070;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  /* Font Families - Mapping to --font-{name} */
+  --font-fraunces: "Fraunces", serif;
+  --font-nunito: "Nunito", sans-serif;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  /* Keyframes - Standard CSS syntax works here */
+  @keyframes breadBob {
+    0%, 100% { transform: translateY(0) rotate(-2deg); }
+    50% { transform: translateY(-8px) rotate(2deg); }
   }
-}
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  /* Animations - Mapping to --animate-{name} */
+  --animate-bread-bob: breadBob 4s ease-in-out infinite;
+  --animate-fade-in: fadeIn 0.3s ease both;
 }

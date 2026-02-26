@@ -130,6 +130,9 @@ export function FeedingForm({ starterId, onSuccess }: FeedingFormProps) {
             onChange={handleChange}
           />
         </div>
+        <div>
+          <p> Starter activity observed</p>
+        </div>
       </form>
     </Card>
   );
