@@ -1,5 +1,6 @@
 import { FeedingForm } from "../feeding/FeedingForm";
 import { StarterCard } from "../starter/StarterCard";
+import { MilestonesGrid } from "../starter/MilestonesGrid";
 import { Button } from "../../ui";
 
 interface DashboardClientProps {
@@ -38,6 +39,7 @@ export function DashboardClient() {
       </header>
       <StarterCard />
       <FeedingForm starterId="starter123" />
+      <MilestonesGrid unlockedIds={[]} />
     </div>
   );
 }
