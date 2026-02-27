@@ -1,15 +1,15 @@
 "use client";
 
 import { useState, useTransition } from "react";
-import { Button, Input, Textarea, Card } from "../ui";
-import { MILESTONE_DEFS } from "../lib/starter-logic";
-import { cn } from "../lib/utils";
+import { Button, Input, Textarea, Card } from "../../ui";
+import { MILESTONE_DEFS } from "../../lib/starter-logic";
+import { cn } from "../../lib/utils";
 import type {
   StarterActivity,
   FeedingFormValues,
   MilestoneId,
   Starter,
-} from "../types";
+} from "../../types";
 
 const ACTIVITY_OPTIONS: {
   value: StarterActivity;
