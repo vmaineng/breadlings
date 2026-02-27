@@ -131,8 +131,48 @@ export function FeedingForm({ starterId, onSuccess }: FeedingFormProps) {
           />
         </div>
         <div>
-          <p> Starter activity observed</p>
+          <p className="text-xs font-extrabold text-text-light uppercase tracking-wide font-nunito mb-2">
+            Starter activity observed
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {ACTIVITY_OPTIONS.map((act) => (
+              <button
+                key="act.value"
+                type="button"
+                onClick={() => toggleActivity(act.value)}
+                className={cn(
+                  "flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold font-nunito",
+                  "border transition-all duration-150",
+                  activities.includes(act.value)
+                    ? "bg-linear-to-r from-wheat to-dough-dark border-wheat-deep shadow-sm text-crust"
+                    : "bg-[#fef8ed] border-wheat-deep/25 text-crust hover:bg-dough hover:border-wheat-deep/50",
+                )}
+              >
+                <span>{act.emoji}</span>
+                <span>{act.label}</span>
+              </button>
+            ))}
+          </div>
         </div>
+
+        <Textarea
+          className="py-2 px-4 border border-b-crust text-crust"
+          label="NOTES (OPTIONAL)"
+          placeholder="How's your starter going? Any changes?"
+          name="notes"
+          value={values.notes}
+          onChange={handleChange}
+        />
+
+        {error && (
+          <p className="text-sm font-bold text-bread-red font-nunito bg-red-50 rounded-xl px-4 py-2 border border-red-200">
+            {error}
+          </p>
+        )}
+
+        <Button type="submit" variant="primary" size="lg" loading={isPending}>
+          🍞 Feed Starter!
+        </Button>
       </form>
     </Card>
   );
