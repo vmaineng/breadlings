@@ -23,8 +23,8 @@ export function MilestonesGrid({ unlockedIds }: MilestonesGridProps) {
               className={cn(
                 "relative rounded-2xl p-3 text-center border transition-transform duration-200 hover:-translate-y-0.5",
                 unlocked
-                  ? "bg-gradient-to-b from-[#fffacd] to-[#fff0f7] border-wheat-deep/30 shadow-sm"
-                  : "bg-dough/30 border-wheat/30 opacity-40 grayscale-[60%]",
+                  ? "bg-linear-to-b from-[#fffacd] to-[#fff0f7] border-wheat-deep/30 shadow-sm"
+                  : "bg-dough/30 border-wheat/30 opacity-40 grayscal-60",
               )}
             >
               {unlocked && (
