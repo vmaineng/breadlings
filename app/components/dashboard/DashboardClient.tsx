@@ -1,8 +1,13 @@
+"use client";
+
+import { useState } from "react";
 import { FeedingForm } from "../feeding/FeedingForm";
 import { FeedingLog } from "../feeding/FeedingLog";
 import { StarterCard } from "../starter/StarterCard";
 import { MilestonesGrid } from "../starter/MilestonesGrid";
 import { Button } from "../../ui";
+import { MilestoneId } from "@/app/types";
+import { MILESTONE_DEFS } from "@/app/lib/starter-logic";
 
 interface DashboardClientProps {
   starter: Starter;
@@ -11,7 +16,26 @@ interface DashboardClientProps {
   userName: string;
 }
 
-export function DashboardClient() {
+export function DashboardClient({
+  starter,
+  feedings,
+  unlockedIds,
+  userName,
+}: DashboardClientProps) {
+  const [newMilestoneToast, setNewMilestoneToast] =
+    useState<MilestoneId | null>(null);
+
+  function handleFeedSuccess(newMilestones: MilestoneId[]) {
+    if (newMilestones.length > 0) {
+      setNewMilestoneToast(newMilestones[0]);
+      setTimeout(() => setNewMilestoneToast(null), 5000);
+    }
+  }
+
+  const toastMilestone = newMilestoneToast
+    ? MILESTONE_DEFS.find((m) => m.id === newMilestoneToast)
+    : null;
+
   return (
     <div
       className="min-h-screen bg-cream "
@@ -38,10 +62,22 @@ export function DashboardClient() {
           </div>
         </div>
       </header>
-      <StarterCard />
-      <FeedingForm starterId="starter123" />
-      <FeedingLog />
-      <MilestonesGrid unlockedIds={[]} />
+
+      <main>
+        <StarterCard starter={starter} feedings={feedings} />
+        <FeedingForm starterId={starter.id} onSuccess={handleFeedSuccess} />
+        <FeedingLog feedings={feedings} />
+        <MilestonesGrid unlockedIds={unlockedIds} />
+      </main>
+
+      {toastMilestone && (
+        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 animate-fadeIn">
+          <div className="bg-crust text-cream rounded-full px-5 py-3 shadow-xl flex items-center gap-2 font-nunito font-extrabold text-sm whitespace-nowrap">
+            <span className="text-lg">{toastMilestone.icon}</span>
+            <span>Milestone unlocked: {toastMilestone.name}!</span>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
