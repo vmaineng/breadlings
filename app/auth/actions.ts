@@ -20,10 +20,7 @@ export async function signUp(FormData: FormData) {
         }
     })
 
-    if (error) {
-        console.error("Error signing up:", error);
-        throw new Error("Failed to sign up");
-    }
+    if (error) return { data: null, error: error.message }
 
     const {data: {user} } = await supabase.auth.getUser();
     if (user) {
@@ -42,7 +39,7 @@ export async function signIn(FormData: FormData) {
         email,
         password,
     })
-    if (error) return console.error("Error signing in:", error);
+    if (error) return { data: null, error: error.message }
     revalidatePath('/', 'layout')
     redirect('/dashboard')
 }
