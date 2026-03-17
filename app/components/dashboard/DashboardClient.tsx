@@ -52,7 +52,7 @@ export function DashboardClient({
 
           <div className="flex items-center gap-3">
             <span className="text-xs font-bold text-text-light font-nunito hidden sm:block">
-              username
+              {userName}
             </span>
             <form>
               <Button type="submit" variant="ghost" size="sm">
